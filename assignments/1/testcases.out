@@ -1,0 +1,81 @@
+./run.sh next "  o aa|  o   |xxo   |ppp  q|     q|     q"
+-------- -------- -------- -------- -------- 
+|  oaa | |  o aa| |  o aa| |  o aa| |  o aa| 
+|  o   | |  o   | |  o   | |  o   | |  o  q| 
+|xxo     |xxo     |xxo     |xxo  q  |xxo  q  
+|ppp  q| | ppp q| |  pppq| |ppp  q| |ppp  q| 
+|     q| |     q| |     q| |     q| |      | 
+|     q| |     q| |     q| |      | |      | 
+-------- -------- -------- -------- -------- 
+./run.sh next "  ooo |ppp q |xx  qa|rrr qa|b c dd|b c ee"
+-------- -------- -------- -------- -------- -------- -------- -------- -------- -------- -------- 
+|  ooo | |  ooo | | ooo  | |ooo   | |   ooo| |  ooo | |  ooo | |  oooa| |  ooo | |  ooo | |  ooo | 
+|ppp q | |ppp q | |ppp q | |ppp q | |ppp q | | pppq | |ppp qa| |ppp qa| |ppp q | |ppp q | |ppp q | 
+| xx qa  |  xxqa  |xx  qa  |xx  qa  |xx  qa  |xx  qa  |xx  qa  |xx  q   |xx  qa  |xx  qa  |xx  qa  
+|rrr qa| |rrr qa| |rrr qa| |rrr qa| |rrr qa| |rrr qa| |rrr q | |rrr q | | rrrqa| |rrr qa| |rrr qa| 
+|b c dd| |b c dd| |b c dd| |b c dd| |b c dd| |b c dd| |b c dd| |b c dd| |b c dd| |b cdd | |b c dd| 
+|b c ee| |b c ee| |b c ee| |b c ee| |b c ee| |b c ee| |b c ee| |b c ee| |b c ee| |b c ee| |b cee | 
+-------- -------- -------- -------- -------- -------- -------- -------- -------- -------- -------- 
+./run.sh next "  oaa |  o   |  o xx|  pppq|     q|     q"
+-------- -------- -------- -------- 
+|  oaa | |  o aa| |  oaa | |  oaa | 
+|  o   | |  o   | |  o   | |  o   | 
+|  oxx   |  o xx  |  o xx  |  o xx  
+|  pppq| |  pppq| | ppp q| |ppp  q| 
+|     q| |     q| |     q| |     q| 
+|     q| |     q| |     q| |     q| 
+-------- -------- -------- -------- 
+./run.sh next "  AAA |     B|xx   B|     B|  DDEE|      "
+-------- -------- -------- -------- -------- -------- -------- -------- -------- 
+|  AAA | |  AAA | |  AAA | | AAA  | |AAA   | |   AAA| |  AAAB| |  AAA | |  AAA | 
+|     B| |     B| |     B| |     B| |     B| |     B| |     B| |     B| |     B| 
+| xx  B  |  xx B  |   xxB  |xx   B  |xx   B  |xx   B  |xx   B  |xx   B  |xx   B  
+|     B| |     B| |     B| |     B| |     B| |     B| |      | |     B| |     B| 
+|  DDEE| |  DDEE| |  DDEE| |  DDEE| |  DDEE| |  DDEE| |  DDEE| | DD EE| |DD  EE| 
+|      | |      | |      | |      | |      | |      | |      | |      | |      | 
+-------- -------- -------- -------- -------- -------- -------- -------- -------- 
+./run.sh next "  AAAB|     B|xx   B|      |  DDEE|      "
+-------- -------- -------- -------- -------- -------- -------- -------- 
+|  AAAB| |  AAAB| |  AAAB| | AAA B| |AAA  B| |  AAA | |  AAAB| |  AAAB| 
+|     B| |     B| |     B| |     B| |     B| |     B| |     B| |     B| 
+| xx  B  |  xx B  |   xxB  |xx   B  |xx   B  |xx   B  |xx   B  |xx   B  
+|      | |      | |      | |      | |      | |     B| |      | |      | 
+|  DDEE| |  DDEE| |  DDEE| |  DDEE| |  DDEE| |  DDEE| | DD EE| |DD  EE| 
+|      | |      | |      | |      | |      | |      | |      | |      | 
+-------- -------- -------- -------- -------- -------- -------- -------- 
+./run.sh next "  AAAB|  C  B|xxC  B|      |  DDEE|      "
+-------- -------- -------- -------- -------- -------- 
+| AAA B| |AAA  B| |  AAA | |  AAAB| |  AAAB| |  AAAB| 
+|  C  B| |  C  B| |  C  B| |     B| |  C  B| |  C  B| 
+|xxC  B  |xxC  B  |xxC  B  |xxC  B  |xxC  B  |xxC  B  
+|      | |      | |     B| |  C   | |      | |      | 
+|  DDEE| |  DDEE| |  DDEE| |  DDEE| | DD EE| |DD  EE| 
+|      | |      | |      | |      | |      | |      | 
+-------- -------- -------- -------- -------- -------- 
+./run.sh next "A    B|A    B|xx   B|    CC|  D   |  DEEE"
+-------- -------- -------- -------- -------- -------- -------- -------- -------- -------- -------- 
+|A    B| |A    B| |A    B| |A    B| |A    B| |A    B| |A    B| |A    B| |A    B| |A    B| |A D  B| 
+|A    B| |A    B| |A    B| |A    B| |A    B| |A    B| |A    B| |A    B| |A    B| |A D  B| |A D  B| 
+| xx  B  |  xx B  |   xxB  |xx   B  |xx   B  |xx   B  |xx   B  |xx   B  |xxD  B  |xxD  B  |xx   B  
+|    CC| |    CC| |    CC| |   CC | |  CC  | | CC   | |CC    | |  D CC| |  D CC| |    CC| |    CC| 
+|  D   | |  D   | |  D   | |  D   | |  D   | |  D   | |  D   | |  D   | |      | |      | |      | 
+|  DEEE| |  DEEE| |  DEEE| |  DEEE| |  DEEE| |  DEEE| |  DEEE| |   EEE| |   EEE| |   EEE| |   EEE| 
+-------- -------- -------- -------- -------- -------- -------- -------- -------- -------- -------- 
+./run.sh next "    A |    A |  xxA |   B  |   BCC|      "
+-------- -------- -------- -------- 
+|    A | |    A | |      | |    A | 
+|    A | |    A | |    A | |    A | 
+| xx A   |xx  A   |  xxA   |  xxA   
+|   B  | |   B  | |   BA | |      | 
+|   BCC| |   BCC| |   BCC| |   BCC| 
+|      | |      | |      | |   B  | 
+-------- -------- -------- -------- 
+./run.sh next "    AA|  BBCC|xx  EF|GGHHEF|   IEF|   IJJ"
+-------- -------- -------- -------- -------- -------- -------- -------- 
+|    AA| |    AA| |   AA | |  AA  | | AA   | |AA    | |    AA| |    AA| 
+|  BBCC| |  BBCC| |  BBCC| |  BBCC| |  BBCC| |  BBCC| | BB CC| |BB  CC| 
+| xx EF  |  xxEF  |xx  EF  |xx  EF  |xx  EF  |xx  EF  |xx  EF  |xx  EF  
+|GGHHEF| |GGHHEF| |GGHHEF| |GGHHEF| |GGHHEF| |GGHHEF| |GGHHEF| |GGHHEF| 
+|   IEF| |   IEF| |   IEF| |   IEF| |   IEF| |   IEF| |   IEF| |   IEF| 
+|   IJJ| |   IJJ| |   IJJ| |   IJJ| |   IJJ| |   IJJ| |   IJJ| |   IJJ| 
+-------- -------- -------- -------- -------- -------- -------- -------- 
