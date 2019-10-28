@@ -1,7 +1,24 @@
 from path import Path, Node
 from board import Board
 
-class BreadthFirst:
+def sortByCost(nodes):
+   sorted(nodes, key=lambda x: x.getCost(heuristic))
+
+# take the distance the car is to the exit plus the number of other cars along it's path
+def heuristic(data):
+    if(data is None):
+        return 0
+    if(not isinstance(data, Board)):
+        print("Hueristic got non Board type")
+    car_pos = data.find_car_bounds(data.main_car)
+    distance = data.goal[0] - car_pos[1][0]
+    cars = 0
+    for i in range(car_pos[1][0] + 1, data.goal[0]):
+        if(data.board[i][data.goal[1]] != data.empty_char):
+            cars = cars + 1
+    return distance + cars
+
+class AStar:
 
     def __init__(self, starting_board):
         # initial node has no parent
@@ -9,7 +26,7 @@ class BreadthFirst:
 
     def search(self):
         #expand first node
-        node = self.path.getFirstLeaf()
+        node = self.path.getSmallestCostLeaf(heuristic)
 
         if(self.path.alreadyVisited(node)):
             return False
@@ -32,3 +49,4 @@ class BreadthFirst:
 
     def getVisitedCount(self):
         return self.path.getVisitedCount()
+

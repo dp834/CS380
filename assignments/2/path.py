@@ -55,11 +55,27 @@ class Path:
             return None
         return self.visitedNodes[-1]
 
+    def alreadyVisited(self, node):
+        return node in self.visitedNodes
+
+    def getVisitedCount(self):
+        return len(self.visitedNodes)
+
+    def getSmallestCostLeaf(self, heuristic):
+        node = min(self.leafNodes, key=lambda x: x.getCost(heuristic))
+        self.leafNodes.remove(node)
+        return node
+
 class Node:
     def __init__(self, data, parent):
         self.data = data
         self.parent = parent
         self.children = []
+
+    def __eq__(self, other):
+        if(not isinstance(other,Node)):
+            return False
+        return self.data == other.data
 
     def getParent(self):
         return self.parent
@@ -76,3 +92,9 @@ class Node:
 
     def getData(self):
         return self.data
+
+    def getCost(self, heuristic):
+        if(self.getParent() == None):
+            return 0
+        return self.getParent().getCost(heuristic) + heuristic(self.data)
+

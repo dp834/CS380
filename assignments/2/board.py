@@ -21,6 +21,11 @@ class Board:
         self.cars = [self.main_car]
         self.create_from_string(string)
 
+    def __eq__(self, other):
+        if(not isinstance(other, Board)):
+            return False
+        return self.board == other.board
+
     def create_from_string(self, string):
         lines = string.split("|")
         self.columns = len(lines[0])

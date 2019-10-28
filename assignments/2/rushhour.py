@@ -4,6 +4,7 @@ import sys # for command line arguments
 from board import Board, print_boards, print_boards_with_max
 from random_walk import RandomWalk
 from breadth_first import BreadthFirst
+from a_star import AStar
 
 def main():
     argcount = len(sys.argv)
@@ -33,13 +34,17 @@ def main():
         print_boards_with_max(path, 6)
     elif(command == "bfs"):
         bfs = BreadthFirst(board)
-        searches = 0
-        while(bfs.search() == False and searches < 100000):
-            searches = searches + 1
+        while(bfs.search() == False):
             print_boards_with_max(bfs.getLastPath(), 6)
-            print(searches)
         print_boards_with_max(bfs.getLastPath(), 6)
-        print(searches)
+        print(bfs.getVisitedCount())
+    elif(command == "astar"):
+        astar = AStar(board)
+        while(astar.search() == False):
+            print_boards_with_max(astar.getLastPath(), 6)
+        print_boards_with_max(astar.getLastPath(), 6)
+        print(astar.getVisitedCount())
+        
 
 
 
