@@ -93,8 +93,13 @@ class Node:
     def getData(self):
         return self.data
 
+    def getLength(self):
+        if(self.getParent() is None):
+            return 0
+        return 1 + self.getParent().getLength()
+
     def getCost(self, heuristic):
         if(self.getParent() == None):
             return 0
-        return self.getParent().getCost(heuristic) + heuristic(self.data)
+        return self.getParent().getLength() + heuristic(self.data)
 

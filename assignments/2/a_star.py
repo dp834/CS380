@@ -28,8 +28,8 @@ class AStar:
         #expand first node
         node = self.path.getSmallestCostLeaf(heuristic)
 
-        if(self.path.alreadyVisited(node)):
-            return False
+        while(self.path.alreadyVisited(node)):
+            node = self.path.getSmallestCostLeaf(heuristic)
 
         self.path.addVisitedNode(node)
 

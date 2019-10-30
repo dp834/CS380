@@ -11,8 +11,8 @@ class BreadthFirst:
         #expand first node
         node = self.path.getFirstLeaf()
 
-        if(self.path.alreadyVisited(node)):
-            return False
+        while(self.path.alreadyVisited(node)):
+            node = self.path.getFirstLeaf()
 
         self.path.addVisitedNode(node)
 

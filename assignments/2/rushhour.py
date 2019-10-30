@@ -44,7 +44,7 @@ def main():
             print_boards_with_max(astar.getLastPath(), 6)
         print_boards_with_max(astar.getLastPath(), 6)
         print(astar.getVisitedCount())
-        
+
 
 
 
