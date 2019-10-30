@@ -71,6 +71,7 @@ class Node:
         self.data = data
         self.parent = parent
         self.children = []
+        self.cost = None
 
     def __eq__(self, other):
         if(not isinstance(other,Node)):
@@ -99,7 +100,10 @@ class Node:
         return 1 + self.getParent().getLength()
 
     def getCost(self, heuristic):
+        if(self.cost != None):
+            return self.cost
         if(self.getParent() == None):
             return 0
-        return self.getParent().getLength() + heuristic(self.data)
+        self.cost = self.getParent().getLength() + heuristic(self.data)
+        return self.cost
 
