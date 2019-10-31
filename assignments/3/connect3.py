@@ -44,7 +44,7 @@ class Connect3Board:
         while j >= 0 and self.get(i, j) == EMPTY:
             j -= 1
         return j+1
-    
+
     def place(self, i, label):
         j = self.first_empty(i)
         if j is not None:
@@ -53,7 +53,7 @@ class Connect3Board:
 
     def equals(self, board):
         return self.compact_string() == board.compact_string()
-    
+
     def next(self, label):
         boards = []
         for i in range(COLS):
@@ -63,7 +63,7 @@ class Connect3Board:
                 board.put(i, j, label)
                 boards.append(board)
         return boards
-    
+
     def _winner_test(self, label, i, j, di, dj):
         for _ in range(CONNECT-1):
             i += di
@@ -71,7 +71,7 @@ class Connect3Board:
             if self.get(i, j) != label:
                 return False
         return True
-    
+
     def winner(self):
         for i in range(COLS):
             for j in range(ROWS):
