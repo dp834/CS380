@@ -1,6 +1,11 @@
 import math
 import random
 import sys
+from random_player import RandomPlayer
+from minimax_player import MinimaxPlayer
+from minimax_aplha_beta_player import MinimaxAlphaBetaPlayer
+from human_player import HumanPlayer
+from game import Game
 
 
 CONNECT = 3
@@ -101,6 +106,14 @@ def stringify_boards(boards):
         s += ' '.join([' ' + ('-' * COLS) +' '] * len(boards))
         return s
 
+def playGame(game):
+    history = game.playGame()
+    print(stringify_boards(history))
+    winner = history[-1].winner()
+    if winner == TIE :
+        print("Game was a Tie")
+    else:
+        print("{} won the game".format(winner))
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
@@ -108,3 +121,21 @@ if __name__ == "__main__":
         board = Connect3Board(sys.argv[2] if len(sys.argv) > 2 else None)
         if cmd == 'print':
             print(board)
+        elif cmd == "next" :
+            print(stringify_boards(board.next("X")))
+        elif cmd == "random" :
+            game = Game(board, RandomPlayer("X"), RandomPlayer("O"))
+            playGame(game)
+        elif cmd == "minimax" :
+            game = Game(board, RandomPlayer("X"), MinimaxPlayer("O"))
+            playGame(game)
+        elif cmd == "alphabeta" :
+            game = Game(board, RandomPlayer("X"), MinimaxAlphaBetaPlayer("O"))
+            playGame(game)
+        elif cmd == "human1" :
+            game = Game(board, HumanPlayer("X"), MinimaxAlphaBetaPlayer("O"))
+            playGame(game)
+        elif cmd == "human2" :
+            game = Game(board, MinimaxAlphaBetaPlayer("X"), HumanPlayer("O"))
+            playGame(game)
+
