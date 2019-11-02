@@ -32,7 +32,7 @@ class MinimaxPlayer(Player):
         if(winner is not None):
             return self.utility(winner, depth)
 
-        maximum = -1
+        maximum = -1 * float("inf")
         for b in board.next(self.label):
             maximum = max([maximum, self.minimize(b, depth + 1)])
 
@@ -43,7 +43,7 @@ class MinimaxPlayer(Player):
         if(winner is not None):
             return self.utility(winner, depth)
 
-        minimum = 2
+        minimum = float("inf")
         for b in board.next(self.opponentLabel):
             minimum = min([minimum, self.maximize(b, depth + 1)])
 

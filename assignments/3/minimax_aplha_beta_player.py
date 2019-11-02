@@ -21,8 +21,10 @@ class MinimaxAlphaBetaPlayer(Player):
         """
         moves = []
         self.tree = []
+        alpha = -1*float("inf")
+        beta  = float("inf")
         for b in board.next(self.label):
-            moves.append( (b, self.minimizeAlphaBeta(b, -1*float("inf"), float("inf"), 1)) )
+            moves.append( (b, self.minimizeAlphaBeta(b, alpha, beta, 1)) )
         move = max(moves, key=(lambda x: x[1]))
         moves.sort(key=(lambda x: x[1]))
         self.tree.sort(key=(lambda x: x[0]))
@@ -39,7 +41,7 @@ class MinimaxAlphaBetaPlayer(Player):
             asdf = self.minimizeAlphaBeta(b, alpha, beta, depth + 1)
             self.tree.append((depth, asdf, b))
             maximum = max([maximum, asdf])
-            if(maximum > beta):
+            if(maximum >= beta):
                 return maximum
             alpha = max([alpha, maximum])
 
@@ -55,7 +57,7 @@ class MinimaxAlphaBetaPlayer(Player):
             asdf = self.maximizeAlphaBeta(b, alpha, beta, depth + 1)
             self.tree.append((depth, asdf, b))
             minimum = min([minimum, asdf])
-            if(minimum < alpha):
+            if(minimum <= alpha):
                 return minimum
             beta = min([beta, minimum])
 
