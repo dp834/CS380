@@ -122,7 +122,13 @@ if __name__ == "__main__":
         if cmd == 'print':
             print(board)
         elif cmd == "next" :
-            print(stringify_boards(board.next("X")))
+            xcount = board.compact_string().count("X")
+            ocount = board.compact_string().count("O")
+            if(xcount >= ocount):
+                print(stringify_boards(board.next("X")))
+            else:
+                print(stringify_boards(board.next("O")))
+
         elif cmd == "random" :
             game = Game(board, RandomPlayer("X"), RandomPlayer("O"))
             playGame(game)
