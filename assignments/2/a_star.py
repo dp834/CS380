@@ -17,7 +17,6 @@ def heuristic(data):
         if(data.board[i][data.goal[1]] != data.empty_char):
             cars += 1
             # cars that are blocking the car that needs to move
-            data.show()
             cars += car_blocked(data, data.board[i][data.goal[1]], (i, data.goal[1]))
     return distance + cars
 
@@ -72,23 +71,18 @@ def car_blocked(board, car, pos):
             nextOccupied += 1
         spacesAfter = nextOccupied - end[0] - 1
         carAfter = (nextOccupied,end[1])
-    print("car {} cars {} {}".format(car, board.board[carBefore[0]][carBefore[1]], board.board[carAfter[0]][carAfter[1]]))
-    print("piecesBefore {} spacesAfter {} piecesAfter {} spacesBefore {}".format(piecesBefore, spacesAfter, piecesAfter, spacesBefore))
     if(piecesBefore >= spacesAfter):
         if(piecesAfter >= spacesBefore):
             if(board.board[carBefore[0]][carBefore[1]] in [car, board.empty_char]):
                 costAfter  = car_blocked(board, board.board[carAfter[0]][carAfter[1]], carAfter)
-                print("{} A {}".format(car, costAfter))
                 return 1 + costAfter
 
             if(board.board[carAfter[0]][carAfter[1]] in [car, board.empty_char]):
                 costBefore = car_blocked(board, board.board[carBefore[0]][carBefore[1]], carBefore)
-                print("{} B {}".format(car, costBefore))
                 return 1 + costBefore
 
             costBefore = car_blocked(board, board.board[carBefore[0]][carBefore[1]], carBefore)
             costAfter  = car_blocked(board, board.board[carAfter[0]][carAfter[1]], carAfter)
-            print("{} B {} A {}".format(car, costBefore, costAfter))
             return 1 + min([costBefore, costAfter])
 
     return 0
