@@ -1,5 +1,6 @@
 import random
 import sys
+import copy
 
 
 DEFAULT_STATE = '       | ###  -| # #  +| # ####|       '
@@ -34,14 +35,14 @@ class State:
     def is_legal(self, action):
         cell = self.env.get(self.x + action.dx, self.y + action.dy)
         return cell is not None and cell in ' +-'
-    
+
     def legal_actions(self, actions):
         legal = []
         for action in actions:
             if self.is_legal(action):
                 legal.append(action)
         return legal
-    
+
     def reward(self):
         cell = self.env.get(self.x, self.y)
         if cell is None:
@@ -104,16 +105,23 @@ class Env:
 class QTable:
 
     def __init__(self, env, actions):
-        # initialize your q table
+        #Initialize q table with each state containing a dictionary to each action initialized to 0
+        self.actionNames = [action.name for action in actions]
+        actionValues = dict(zip(self.actionNames, [0 for _ in range(len(actions))]))
+        self.qtable = [ [copy.deepcopy(actionValues) for _ in range(env.x_size)] for _ in range(env.y_size) ]
+        self.actions = actions
+        self.env = env
+
 
     def get_q(self, state, action):
-        # return the value of the q table for the given state, action
+        return self.get_q_row(state)[action.name]
 
     def get_q_row(self, state):
         # return the row of q table corresponding to the given state
+        return self.qtable[state.y][state.x]
 
     def set_q(self, state, action, val):
-        # set the value of the q table for the given state, action
+        self.get_q_row(state)[action.name] = val
 
     def learn_episode(self, alpha=.10, gamma=.90):
         # with the given alpha and gamma values,
@@ -122,12 +130,48 @@ class QTable:
         # compute the reward, and update the q table for (state, action).
         # repeat until an end state is reached (thus completing the episode)
         # also print the state at each state
-    
+
+        # get initial random state
+        state = self.env.random_state()
+        #run until we reach the end
+        while(state.at_end() == False):
+            # print our board state
+            print(state)
+            # select a random legal action
+            action = random.choice(state.legal_actions(self.actions))
+            previousState = state.clone()
+            state.execute(action)
+
+            # update value in qtable using Bellman Equations
+            # Previous Q value estimate
+            newVal = (1-alpha)*self.get_q(previousState, action)
+            # New Q value estimate
+            newVal += alpha*(state.reward() + gamma*max(self.get_q_row(state).values()))
+            self.set_q(previousState, action, newVal)
+
+        # print our final board state (fencepost problem)
+        print(state)
+
+
+
     def learn(self, episodes, alpha=.10, gamma=.90):
-        # run <episodes> number of episodes for learning with the given alpha and gamma
+        for _ in range(episodes):
+            self.learn_episode(alpha=alpha, gamma=gamma)
 
     def __str__(self):
         # return a string for the q table as described in the assignment
+        string = ""
+        for action in self.actionNames:
+            string += "\n{name}\n".format(name = action)
+            for row in self.qtable:
+                for element in row:
+                    if(element[action] == 0):
+                        string += "----\t"
+                    else:
+                        string += "{:.2f}\t".format(element[action])
+                #Between rows of our table
+                string += "\n"
+        return string[:-1]
 
 
 if __name__ == "__main__":
